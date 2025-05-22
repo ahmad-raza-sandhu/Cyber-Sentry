@@ -2173,6 +2173,22 @@
                 button.innerHTML = originalText;
             }, 2000);
         }
+         // Disable right-click, inspect element, and keyboard shortcuts
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert('Right-click is disabled for content protection.');
+        });
+
+        document.addEventListener('keydown', function (e) {
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            if (e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                alert('This action is not allowed for content protection.');
+            }
+        });
 
         // Initialize the app
         init();
